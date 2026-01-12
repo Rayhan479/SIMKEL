@@ -313,13 +313,13 @@ export default function MainContent() {
               <Megaphone size={20} />
               <span>Buat Pengumuman</span>
             </button>
-            <button
+            {/* <button
               onClick={() => setIsReportModalOpen(true)}
               className="w-full bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
             >
               <FileText size={20} />
               <span>Buat Laporan</span>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, MapPin, Clock, AlertCircle, Upload, Image as ImageIcon } from 'lucide-react';
 import LocationMap from '@/components/LocationMap';

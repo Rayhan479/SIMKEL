@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { X, FileText, Calendar, AlertCircle, Upload, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
