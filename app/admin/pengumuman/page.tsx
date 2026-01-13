@@ -10,7 +10,7 @@ import {
   ArrowUpDown,
 } from "lucide-react";
 import Image from "next/image";
-import AnnouncementModal from "@/app/admin/pengumuman/modal/page";
+import AnnouncementModal from "@/components/AnnouncementModal";
 
 interface Announcement {
   id: number;

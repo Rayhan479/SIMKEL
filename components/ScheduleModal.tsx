@@ -148,7 +148,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -163,7 +162,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-xl font-semibold text-gray-800">
             {editingSchedule ? 'Edit Jadwal' : 'Tambah Jadwal Baru'}
@@ -176,9 +174,7 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
           </button>
         </div>
 
-        {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {/* Judul */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Judul
@@ -200,7 +196,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             )}
           </div>
 
-          {/* Tanggal */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Calendar size={16} className="inline mr-2" />
@@ -222,7 +217,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             )}
           </div>
 
-          {/* Lokasi */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <MapPin size={16} className="inline mr-2" />
@@ -245,7 +239,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             )}
           </div>
 
-          {/* Alamat Lengkap */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Alamat Lengkap
@@ -259,7 +252,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             />
           </div>
 
-          {/* Lokasi Map */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <MapPin size={16} className="inline mr-2" />
@@ -272,7 +264,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             />
           </div>
 
-          {/* Waktu Mulai */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Clock size={16} className="inline mr-2" />
@@ -294,7 +285,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             )}
           </div>
 
-          {/* Waktu Selesai */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Clock size={16} className="inline mr-2" />
@@ -316,7 +306,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             )}
           </div>
 
-          {/* Jumlah Kuota */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Jumlah Kuota
@@ -331,7 +320,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             />
           </div>
 
-          {/* Status */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Status
@@ -348,7 +336,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             </select>
           </div>
 
-          {/* Gambar */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <ImageIcon size={16} className="inline mr-2" />
@@ -375,6 +362,8 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
                 <Image
                   src={previewUrl}
                   alt="Preview"
+                  width={500}
+                  height={200}
                   className="w-full h-48 object-cover rounded-lg border"
                 />
                 <button
@@ -388,7 +377,6 @@ export default function ScheduleModal({ isOpen, onClose, onSave, editingSchedule
             )}
           </div>
 
-          {/* Modal Footer */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
             <button
               type="button"

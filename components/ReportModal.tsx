@@ -63,8 +63,6 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
       newErrors.jumlah = 'Jumlah harus berupa angka positif';
     }
 
-
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -81,7 +79,6 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -92,7 +89,6 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-xl font-semibold text-gray-800">
             {editingReport ? 'Edit Laporan' : 'Tambah Laporan Baru'}
@@ -105,9 +101,7 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
           </button>
         </div>
 
-        {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {/* Tanggal */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Calendar size={16} className="inline mr-2" />
@@ -129,7 +123,6 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
             )}
           </div>
 
-          {/* Lokasi */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <MapPin size={16} className="inline mr-2" />
@@ -152,7 +145,6 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
             )}
           </div>
 
-          {/* Jumlah Dilayani */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Users size={16} className="inline mr-2" />
@@ -176,9 +168,6 @@ export default function ReportModal({ isOpen, onClose, onSave, editingReport }: 
             )}
           </div>
 
-
-
-          {/* Modal Footer */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
             <button
               type="button"

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Users, Search, ArrowUpDown } from 'lucide-react';
-import UserModal from '@/app/admin/user/modal/page';
+import UserModal from '@/components/UserModal';
 
 interface User {
   id: number;

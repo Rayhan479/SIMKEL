@@ -14,7 +14,7 @@ import {
   User,
   Lock,
 } from "lucide-react";
-import FAQModal from "@/app/admin/pengaturan/modal/page";
+import FAQModal from "@/components/FAQModal";
 
 interface ContactInfo {
   phone: string;
@@ -53,11 +53,7 @@ interface UserProfile {
   username: string;
 }
 
-interface SettingsPageProps {
-  userRole?: string;
-}
-
-export default function SettingsPage({ userRole }: SettingsPageProps = {}) {
+export default function SettingsPage() {
   const [contactInfo, setContactInfo] = useState<ContactInfo>({
     phone: "",
     email: "",

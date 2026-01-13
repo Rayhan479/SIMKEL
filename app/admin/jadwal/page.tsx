@@ -11,7 +11,7 @@ import {
   UserCheck,
   ArrowUpDown,
 } from "lucide-react";
-import ScheduleModal from "@/app/admin/jadwal/modal/page";
+import ScheduleModal from "@/components/ScheduleModal";
 import Image from "next/image";
 
 interface Schedule {

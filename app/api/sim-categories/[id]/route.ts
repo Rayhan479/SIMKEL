@@ -3,13 +3,14 @@ import { PrismaClient } from "@/lib/generated/prisma";
 
 const prisma = new PrismaClient();
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const { name, description, price } = body;
 
     const category = await prisma.simCategory.update({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       data: { name, description, price: parseInt(price) }
     });
 
@@ -20,10 +21,11 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const category = await prisma.simCategory.findUnique({
-      where: { id: parseInt(params.id) }
+      where: { id: parseInt(id) }
     });
 
     if (category?.isDefault) {
@@ -31,7 +33,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     await prisma.simCategory.delete({
-      where: { id: parseInt(params.id) }
+      where: { id: parseInt(id) }
     });
 
     return NextResponse.json({ message: "Category deleted" });

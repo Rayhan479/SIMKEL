@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     console.log('Fetching contact info...');
-    const contact = await prisma.$queryRaw`SELECT * FROM "ContactInfo" LIMIT 1`;
+    const contact = await prisma.$queryRaw`SELECT * FROM "ContactInfo" LIMIT 1` as any[];
     console.log('Contact found:', contact);
     return NextResponse.json(contact[0] || null);
   } catch (error) {
@@ -35,7 +35,7 @@ export async function PUT(request: NextRequest) {
     }
     
     // Fetch the updated/created record
-    const contact = await prisma.$queryRaw`SELECT * FROM "ContactInfo" WHERE id = 1`;
+    const contact = await prisma.$queryRaw`SELECT * FROM "ContactInfo" WHERE id = 1` as any[];
     
     return NextResponse.json(contact[0]);
   } catch (error) {

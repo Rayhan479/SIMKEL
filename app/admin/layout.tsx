@@ -94,7 +94,7 @@ export default function AdminLayout() {
       case "laporan":
         return <ReportPage />;
       case "pengaturan":
-        return <SettingsPage userRole={user?.role} />;
+        return <SettingsPage />;
       case "beranda":
       default:
         return <MainContent />;

@@ -80,7 +80,6 @@ export default function FAQModal({ isOpen, onClose, onSave, editingFAQ }: FAQMod
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -91,7 +90,6 @@ export default function FAQModal({ isOpen, onClose, onSave, editingFAQ }: FAQMod
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-xl font-semibold text-gray-800">
             {editingFAQ ? 'Edit FAQ' : 'Tambah FAQ Baru'}
@@ -104,9 +102,7 @@ export default function FAQModal({ isOpen, onClose, onSave, editingFAQ }: FAQMod
           </button>
         </div>
 
-        {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {/* Pertanyaan */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <HelpCircle size={16} className="inline mr-2" />
@@ -129,7 +125,6 @@ export default function FAQModal({ isOpen, onClose, onSave, editingFAQ }: FAQMod
             )}
           </div>
 
-          {/* Kategori */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Kategori
@@ -186,7 +181,6 @@ export default function FAQModal({ isOpen, onClose, onSave, editingFAQ }: FAQMod
             )}
           </div>
 
-          {/* Jawaban */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <MessageSquare size={16} className="inline mr-2" />
@@ -209,7 +203,6 @@ export default function FAQModal({ isOpen, onClose, onSave, editingFAQ }: FAQMod
             )}
           </div>
 
-          {/* Modal Footer */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
             <button
               type="button"

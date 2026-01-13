@@ -64,28 +64,24 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    // Username validation
     if (!formData.username.trim()) {
       newErrors.username = 'Username harus diisi';
     } else if (formData.username.trim().length < 3) {
       newErrors.username = 'Username minimal 3 karakter';
     }
 
-    // Nama validation
     if (!formData.name.trim()) {
       newErrors.name = 'Nama harus diisi';
     } else if (formData.name.trim().length < 3) {
       newErrors.name = 'Nama minimal 3 karakter';
     }
 
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email harus diisi';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Format email tidak valid';
     }
 
-    // Password validation (only for new users or when password is provided)
     if (!editingUser || formData.password) {
       if (!formData.password) {
         newErrors.password = 'Password harus diisi';
@@ -107,7 +103,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
     
     if (validateForm()) {
       const { confirmPassword, password, ...userData } = formData;
-      // Only include password if it's provided
       const submitData = password ? { ...userData, password } : userData;
       onSave(submitData);
       onClose();
@@ -121,7 +116,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
       setFormData(prev => ({ ...prev, [field]: value }));
     }
     
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -137,7 +131,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-xl font-semibold text-gray-800">
             {editingUser ? 'Edit User' : 'Tambah User Baru'}
@@ -150,9 +143,7 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
           </button>
         </div>
 
-        {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {/* Username */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <User size={16} className="inline mr-2" />
@@ -176,7 +167,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             )}
           </div>
 
-          {/* Nama */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <User size={16} className="inline mr-2" />
@@ -199,7 +189,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             )}
           </div>
 
-          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Mail size={16} className="inline mr-2" />
@@ -222,9 +211,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             )}
           </div>
 
-
-
-          {/* Role */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Shield size={16} className="inline mr-2" />
@@ -243,7 +229,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             </select>
           </div>
 
-          {/* Status */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Status
@@ -258,7 +243,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             </select>
           </div>
 
-          {/* Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Password {editingUser && <span className="text-gray-500">(kosongkan jika tidak ingin mengubah)</span>}
@@ -289,7 +273,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             )}
           </div>
 
-          {/* Confirm Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Konfirmasi Password
@@ -320,7 +303,6 @@ export default function UserModal({ isOpen, onClose, onSave, editingUser }: User
             )}
           </div>
 
-          {/* Modal Footer */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
             <button
               type="button"

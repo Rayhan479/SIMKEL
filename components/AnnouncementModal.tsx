@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, FileText, Calendar, AlertCircle, Upload, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
-import QuillEditor from '../../../../components/QuillEditor';
+import QuillEditor from './QuillEditor';
 
 interface Announcement {
   id: number;
@@ -82,19 +82,14 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
     if (validateForm()) {
       const submitData: Omit<Announcement, 'id'> & { authorId?: number } = { ...formData };
       if (selectedFile) {
-        // In real app, upload file and get URL
         submitData.gambar = URL.createObjectURL(selectedFile);
       }
       
-      // Get current user ID from session
       try {
         const userResponse = await fetch('/api/auth/me');
         if (userResponse.ok) {
           const userData = await userResponse.json();
           submitData.authorId = userData.user?.id || userData.id;
-          console.log('Author ID:', submitData.authorId, 'User:', userData);
-        } else {
-          console.error('Failed to get user data');
         }
       } catch (error) {
         console.error('Error getting user:', error);
@@ -124,7 +119,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
@@ -135,7 +129,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-xl font-semibold text-gray-800">
             {editingAnnouncement ? 'Edit Pengumuman' : 'Tambah Pengumuman Baru'}
@@ -148,9 +141,7 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
           </button>
         </div>
 
-        {/* Modal Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {/* Judul */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <FileText size={16} className="inline mr-2" />
@@ -173,7 +164,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
             )}
           </div>
 
-          {/* Tanggal */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Calendar size={16} className="inline mr-2" />
@@ -195,7 +185,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
             )}
           </div>
 
-          {/* Isi */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Isi Pengumuman
@@ -215,7 +204,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
             )}
           </div>
 
-          {/* Kategori */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Kategori
@@ -247,7 +235,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
             )}
           </div>
 
-          {/* Gambar */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <ImageIcon size={16} className="inline mr-2" />
@@ -274,8 +261,8 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
                 <Image
                   src={previewUrl}
                   alt="Preview"
-                  width={64}
-                  height={48}
+                  width={500}
+                  height={200}
                   className="w-full h-48 object-cover rounded-lg border"
                 />
                 <button
@@ -289,7 +276,6 @@ export default function AnnouncementModal({ isOpen, onClose, onSave, editingAnno
             )}
           </div>
 
-          {/* Modal Footer */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-100">
             <button
               type="button"
